@@ -1,5 +1,7 @@
 package com.katana.web.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -7,18 +9,33 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class NavigationController {
 	
-	@RequestMapping("/loginUser")
-	public ModelAndView goToLogin()
+	@RequestMapping("/commonLoginUser")
+	public ModelAndView goToLogin(HttpServletRequest request)
 	{
-		return new ModelAndView("loginLanding");
+		String authFail = (String)request.getParameter("error");
+		authFail = authFail != null && !authFail.isEmpty() ? authFail:"";
+		return new ModelAndView("loginLanding","error",authFail);
 	}
 	
-	@RequestMapping("/successLogout")
-	public ModelAndView goToPage()
+	@RequestMapping("/commonSuccessLogout")
+	public ModelAndView goToLogoutPage()
 	{
 		return new ModelAndView("logoutSuccess");
 	}
-	@RequestMapping("/user/homepage")
+	
+	@RequestMapping("/commonRegisterUser")
+	public ModelAndView goToRegisterPage()
+	{
+		return new ModelAndView("registerUser");
+	}
+	
+	@RequestMapping("/accessdenied")
+	public ModelAndView goToAccessDeniedPage()
+	{
+		return new ModelAndView("accessdenied");
+	}
+	
+	@RequestMapping("/userHomepage")
 	public ModelAndView goToHomePage()
 	{
 		return new ModelAndView("homepage");

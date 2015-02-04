@@ -15,7 +15,7 @@
         <mongo:mongo host="127.0.0.1" port="27017" />
         
         <!-- Define the mongoDbFactory with your database Name  -->
-		<mongo:db-factory dbname="user" />
+		<mongo:db-factory dbname="userDB" />
  
  		<!-- Define the MongoTemplate  -->
 		<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">

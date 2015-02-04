@@ -11,5 +11,8 @@
 <import resource="classpath:WEB-INF/config/db/mongoConfig.xml"/>
 <import resource="classpath:WEB-INF/config/security/spring-security.xml"/>
 
+	<mvc:annotation-driven/>
+	<context:component-scan base-package="com.katana.web.security"/>
+	<context:component-scan base-package="com.katana.mongodb.service"/>
 
 </beans>

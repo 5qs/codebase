@@ -21,8 +21,8 @@ public class UserService {
 		if (userRepository.findByUsername(user.getUsername()) != null) {
 			return false;
 		}
-		user.setEnabled(false);
-		user.setStatus(UserAccountStatus.STATUS_DISABLED.name());
+		user.setEnabled(true);
+		user.setStatus(UserAccountStatus.STATUS_APPROVED.name());
 		userRepository.save(user);
 		return true;
 	}

@@ -11,18 +11,19 @@
 	-->
 	
 	<!-- secure the application´s urls with the specific Role --> 
-	<http auto-config="false"  use-expressions="true" access-denied-page="/accessdenied">
-		<intercept-url pattern="/loginUser" access="permitAll" />
+	<http auto-config="false"  use-expressions="true">
+		<access-denied-handler  ref="accessDeniedHandler"/>
+		<intercept-url pattern="/common*" access="permitAll" />
 		<intercept-url pattern="/logout" access="permitAll" />
 		<intercept-url pattern="/accessdenied" access="permitAll" />
-		<intercept-url pattern="/user/*" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		<intercept-url pattern="/admin/*" access="hasAnyRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/user*" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		<intercept-url pattern="/admin*" access="hasAnyRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/listUsers" access="hasRole('ROLE_ADMIN')" />
 		
-        <form-login  login-processing-url="/processLogin" login-page="/loginUser" default-target-url="/user/homepage" 
-        password-parameter="password" username-parameter="username" authentication-failure-url="/accessdenied"  />
+        <form-login  login-processing-url="/processLogin" login-page="/commonLoginUser" default-target-url="/userHomepage" 
+        password-parameter="password" username-parameter="username" authentication-failure-url="/commonLoginUser?error=authfail"  />
         
-		<logout logout-url="/logout" logout-success-url="/successLogout" delete-cookies="JSESSIONID" invalidate-session="true" />
+		<logout logout-url="/logout" logout-success-url="/commonSuccessLogout" delete-cookies="JSESSIONID" invalidate-session="true" />
 	</http>
 
 
@@ -33,4 +34,9 @@
     <authentication-manager alias="authenticationManager">
 		 <authentication-provider ref="localAuthenticationProvider"/>
 	</authentication-manager>
+	
+	<beans:bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+  	 	<beans:property name="errorPage" value="/accessdenied"/>
+	</beans:bean>
 </beans:beans>
+
