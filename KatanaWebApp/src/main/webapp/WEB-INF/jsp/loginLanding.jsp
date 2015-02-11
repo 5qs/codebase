@@ -18,6 +18,6 @@
 <input name="password" id="password"/>
 <input type="submit" value="Submit">
 </form>
-<a href="common/registerUser">New User? Register</a>
+<a href="commonRegisterUser">New User? Register</a>
 </body>
 </html>

@@ -3,8 +3,12 @@ package com.katana.web.domain;
 public class NewUser {
 	
 	private String username;
-	
 	private String password;
+	private String confirmPassword;
+	private String firstName;
+	private String lastName;
+	
+	private String sex;
 	
 	public String getUsername() {
 		return username;
@@ -36,10 +40,13 @@ public class NewUser {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	private String confirmPassword;
-	
-	private String firstName;
-	private String lastName;
+
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 	
 	
 

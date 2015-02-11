@@ -25,6 +25,11 @@
 <label for="lastName">Last Name :</label>
 <input name="lastName" id="lastName"/>
 
+
+Select gender:
+<input type="radio" name="sex" value="m"> Male
+<input type="radio" name="sex" value="f"> Female
+
 <input type="submit" value="Submit">
 
 </form>
